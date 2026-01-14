@@ -4,7 +4,7 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build",
+        "build": "vite build && node -e \"const fs=require('fs'); if(fs.existsSync('build')) fs.rmSync('build',{recursive:true}); fs.cpSync('public', 'build', {recursive:true})\"",
         "vercel-build": "npm run build && php artisan route:cache && php artisan view:cache && php artisan config:cache && php artisan event:cache",
         "deploy": "pnpm run prepare-deploy && vercel deploy --force --prod"
     },
