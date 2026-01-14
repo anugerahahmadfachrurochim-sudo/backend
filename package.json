@@ -4,7 +4,7 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build",
+        "build": "vite build && mkdir dist && cp -rv public/* dist/ && cp -rv public/.[!.]* dist/",
         "preview": "vite preview",
         "start": "node server.js"
     },
