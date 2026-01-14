@@ -1,10 +1,11 @@
 {
     "version": 2,
-    "functions": {
-        "api/*.php": {
-            "runtime": "vercel-php@0.7.4"
+    "builds": [
+        {
+            "src": "server.php",
+            "use": "vercel-php@0.7.4"
         }
-    },
+    ],
     "routes": [
         {
             "src": "/(css|js|images|fonts|vendor)/(.*)",
@@ -20,7 +21,7 @@
         },
         {
             "src": "/(.*)",
-            "dest": "/api/index.php"
+            "dest": "/server.php"
         }
     ],
     "env": {
