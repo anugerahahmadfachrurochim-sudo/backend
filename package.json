@@ -4,9 +4,9 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build && node -e \"const fs=require('fs'); if(fs.existsSync('dist')) fs.rmSync('dist',{recursive:true}); fs.cpSync('public', 'dist', {recursive:true})\"",
-        "preview": "vite preview",
-        "start": "node server.js"
+        "build": "vite build && node -e \"const fs=require('fs'); if(!fs.existsSync('dist')) fs.mkdirSync('dist'); fs.cpSync('public', 'dist', {recursive:true})\"",
+        "vercel-build": "npm run build && php artisan route:cache && php artisan view:cache && php artisan config:cache && php artisan event:cache",
+        "deploy": "pnpm run build && vercel deploy --force --prod"
     },
     "devDependencies": {
         "@tailwindcss/vite": "^4.0.0",
@@ -21,6 +21,7 @@
     "dependencies": {
         "compression": "^1.8.1",
         "express": "^5.1.0",
-        "http-proxy-middleware": "^3.0.5"
+        "http-proxy-middleware": "^3.0.5",
+        "vercel": "^33.5.3"
     }
 }
